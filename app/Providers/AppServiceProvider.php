@@ -3,26 +3,29 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Pagination\Paginator; // 1. Tambahkan baris ini
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
+        // Force HTTPS in production
         if ($this->app->environment('production')) {
-            \URL::forceScheme('https');
+            URL::forceScheme('https');
+            URL::forceRootUrl('https://' . request()->getHost());
         }
-        Paginator::useBootstrapFive(); // 2. Tambahkan baris ini
+
+        // Alternative: Force HTTPS if request is secure
+        if (request()->isSecure()) {
+            URL::forceScheme('https');
+        }
+
+        Paginator::useBootstrapFive();
     }
 }
