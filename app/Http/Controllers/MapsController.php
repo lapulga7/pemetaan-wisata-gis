@@ -35,7 +35,7 @@ class MapsController extends Controller
             $query->where('kecamatan_id', $request->kecamatan_id);
         }
 
-        $daftar_wisata = $query->latest()->get();
+        $daftar_wisata = $query->orderByDesc('rating')->get();
 
         return view('maps.index', compact('daftar_wisata', 'jenis_wisata', 'daftar_kecamatan'));
     }
