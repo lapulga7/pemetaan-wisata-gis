@@ -20,8 +20,8 @@
                         Kendari. Temukan informasi tempat wisata menarik di Kota Kendari secara interaktif!</p>
 
                     <div class="cta-wrapper">
-                        <a href="#" class="btn btn-primary">Lihat Peta Wisata</a>
-                        <a href="#" class="btn btn-success">Daftar Wisata</a>
+                        <a href="{{ route('pemetaan.index') }}" class="btn btn-primary">Lihat Peta Wisata</a>
+                        <a href="{{ route('pariwisata.index') }}" class="btn btn-success">Daftar Wisata</a>
                     </div>
                 </div>
 
